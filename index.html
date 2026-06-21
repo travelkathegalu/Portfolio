@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Kathegalu | Devika Ram — Travel Creator & Storyteller</title>
+  <meta name="description" content="Travel Kathegalu — Bengaluru's bilingual travel creator. 15K+ followers, 90K monthly views. Destinations, staycations, food & local gems in English & Kannada. By Devika Ram.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-deep: #0A0F1A;
+      --sand: #E8D5B7;
+      --gold: #C4944A;
+      --rose: #B5838D;
+      --ivory: #FAF3EB;
+      --teal: #5B8A8A;
+      --bg-card: rgba(255, 255, 255, 0.04);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --text-primary: #FAF3EB;
+      --text-secondary: rgba(250, 243, 235, 0.6);
+      --text-muted: rgba(250, 243, 235, 0.4);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── Aurora Background ── */
+    .aurora {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .aurora-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.15;
+      animation: aurora-drift 20s ease-in-out infinite alternate;
+    }
+
+    .aurora-blob:nth-child(1) {
+      width: 600px; height: 600px;
+      background: var(--gold);
+      top: -10%; left: -5%;
+      animation-duration: 25s;
+    }
+    .aurora-blob:nth-child(2) {
+      width: 500px; height: 500px;
+      background: var(--rose);
+      top: 30%; right: -10%;
+      animation-duration: 20s;
+      animation-delay: -5s;
+    }
+    .aurora-blob:nth-child(3) {
+      width: 450px; height: 450px;
+      background: var(--teal);
+      bottom: -5%; left: 20%;
+      animation-duration: 22s;
+      animation-delay: -10s;
+    }
+
+    @keyframes aurora-drift {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -20px) scale(1.05); }
+      66% { transform: translate(-20px, 30px) scale(0.95); }
+      100% { transform: translate(15px, -15px) scale(1.02); }
+    }
+
+    /* ── Glass Card ── */
+    .glass {
+      background: rgba(20, 25, 40, 0.7);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+    }
+
+    @supports (backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px)) {
+      .glass {
+        background: var(--bg-card);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+    }
+
+    /* ── Typography ── */
+    .heading-xl {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
+
+    .heading-lg {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .body-text {
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+    }
+
+    /* ── Layout ── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 7rem 2rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header .label {
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .section-header .heading-lg {
+      margin-bottom: 0.75rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--rose));
+      margin: 1.5rem auto;
+      border-radius: 2px;
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .hero-text {
+      z-index: 2;
+      padding-left: clamp(1rem, 5vw, 4rem);
+    }
+
+    .hero-text .label {
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text .heading-xl {
+      color: var(--ivory);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-text .heading-xl .accent {
+      background: linear-gradient(135deg, var(--gold), var(--rose));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-kannada {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
+      color: var(--text-secondary);
+      max-width: 460px;
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    #globe-container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-text {
+      max-width: 560px;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .scroll-hint span {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scroll-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scroll-pulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: 60px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), #D4A55A);
+      color: var(--bg-deep);
+      box-shadow: 0 4px 20px rgba(196, 148, 74, 0.3);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 35px rgba(196, 148, 74, 0.5);
+    }
+
+    .btn-glass {
+      background: rgba(255,255,255,0.06);
+      color: var(--ivory);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-glass:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--gold);
+      transform: translateY(-3px);
+    }
+
+    .btn-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ═══════════════════════════════════════════
+       STATS BAR
+    ═══════════════════════════════════════════ */
+    .stats-bar {
+      padding: 3rem 2rem;
+      z-index: 2;
+    }
+
+    .stats-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border-glass);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .stat-item {
+      background: rgba(10, 15, 26, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .stat-item:hover {
+      background: rgba(196, 148, 74, 0.05);
+    }
+
+    .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--gold), var(--sand));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    /* ═══════════════════════════════════════════
+       AUDIENCE DEMOGRAPHICS
+    ═══════════════════════════════════════════ */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .audience-card {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .audience-card .stat-value {
+      font-size: 1.8rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .audience-card .label {
+      font-size: 0.7rem;
+      margin-bottom: 1rem;
+    }
+
+    .audience-bar {
+      height: 4px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.75rem;
+    }
+
+    .audience-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--rose));
+      transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      width: 0;
+    }
+
+    .audience-bar-fill.animated {
+      width: var(--fill);
+    }
+
+    .audience-detail {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       BRAND LOGOS
+    ═══════════════════════════════════════════ */
+    .brands-section {
+      padding: 4rem 2rem;
+    }
+
+    .brands-label {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .brands-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+
+    .brands-grid:hover { opacity: 0.85; }
+
+    .brand-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: 1px;
+      padding: 1rem 1.5rem;
+      border: 1px dashed var(--border-glass);
+      border-radius: 12px;
+    }
+
+    /* ═══════════════════════════════════════════
+       CONTENT PILLARS
+    ═══════════════════════════════════════════ */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .pillar-card {
+      padding: 2.5rem;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--rose));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .pillar-card:hover::before { transform: scaleX(1); }
+
+    .pillar-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.07);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .pillar-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--gold), transparent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0.3;
+      margin-bottom: 1rem;
+    }
+
+    .pillar-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--ivory);
+    }
+
+    .pillar-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    /* ═══════════════════════════════════════════
+       ABOUT
+    ═══════════════════════════════════════════ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      margin-bottom: 1.5rem;
+    }
+
+    .about-text p:first-child::first-letter {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      float: left;
+      margin-right: 0.5rem;
+      line-height: 0.8;
+      color: var(--gold);
+    }
+
+    .about-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .highlight-card {
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .highlight-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .highlight-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ivory);
+      margin-bottom: 0.25rem;
+    }
+
+    .highlight-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ═══════════════════════════════════════════
+       COLLABORATION
+    ═══════════════════════════════════════════ */
+    .collab-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .collab-card {
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: all 0.4s ease;
+    }
+
+    .collab-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .collab-badge {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .badge-popular {
+      background: rgba(196, 148, 74, 0.15);
+      color: var(--gold);
+      border: 1px solid rgba(196, 148, 74, 0.25);
+    }
+
+    .badge-premium {
+      background: rgba(181, 131, 141, 0.15);
+      color: var(--rose);
+      border: 1px solid rgba(181, 131, 141, 0.25);
+    }
+
+    .badge-flex {
+      background: rgba(91, 138, 138, 0.15);
+      color: var(--teal);
+      border: 1px solid rgba(91, 138, 138, 0.25);
+    }
+
+    .collab-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--ivory);
+    }
+
+    .collab-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    /* ═══════════════════════════════════════════
+       TESTIMONIAL
+    ═══════════════════════════════════════════ */
+    .testimonial-section {
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+
+    .testimonial-card {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 3rem;
+    }
+
+    .testimonial-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--sand);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-quote::before {
+      content: '\201C';
+      font-size: 4rem;
+      color: var(--gold);
+      opacity: 0.3;
+      display: block;
+      line-height: 0.5;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-author {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    /* ═══════════════════════════════════════════
+       CTA / CONTACT
+    ═══════════════════════════════════════════ */
+    .contact-section {
+      text-align: center;
+      padding: 7rem 2rem;
+    }
+
+    .contact-heading {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-text {
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto 3rem;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .contact-link {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-link:hover { color: var(--gold); }
+
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: 1px;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════ */
+    @media (max-width: 968px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 6rem;
+      }
+
+      .hero { min-height: auto; padding: 4rem 2rem; }
+      .hero-text { padding-left: 0; max-width: 100%; }
+      .hero-tagline { margin: 0 auto 2.5rem; }
+      .hero-cta { justify-content: center; }
+
+      #globe-container {
+        height: 35vh;
+        order: -1;
+      }
+
+      .container { padding: 0 1rem; }
+
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .audience-grid { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .collab-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Sticky Nav ── */
+    .sticky-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0.75rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 15, 26, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-glass);
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+    }
+
+    .sticky-nav.visible { transform: translateY(0); }
+
+    .sticky-nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--ivory);
+      text-decoration: none;
+    }
+
+    .sticky-nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .sticky-nav-links a {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+    }
+
+    .sticky-nav-links a:hover { color: var(--gold); }
+
+    .sticky-nav-cta {
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      background: linear-gradient(135deg, var(--gold), #D4A55A);
+      color: var(--bg-deep) !important;
+      font-weight: 600;
+    }
+
+    @media (max-width: 968px) {
+      .sticky-nav-links a:not(.sticky-nav-cta) { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      section { padding: 4rem 1.25rem; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .hero-cta { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 280px; justify-content: center; margin: 0 auto; }
+      .about-highlights { grid-template-columns: 1fr; }
+      .contact-actions { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ STICKY NAV ═══ -->
+  <nav class="sticky-nav" id="sticky-nav">
+    <a href="#" class="sticky-nav-brand">Travel Kathegalu</a>
+    <div class="sticky-nav-links">
+      <a href="#stats">Stats</a>
+      <a href="#content">Content</a>
+      <a href="#about">About</a>
+      <a href="#collab" class="sticky-nav-cta">Collaborate</a>
+    </div>
+  </nav>
+
+  <!-- ═══ AURORA BACKGROUND ═══ -->
+  <div class="aurora">
+    <div class="aurora-blob"></div>
+    <div class="aurora-blob"></div>
+    <div class="aurora-blob"></div>
+  </div>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-text">
+      <span class="label">Digital Creator · Bengaluru</span>
+      <h1 class="heading-xl">
+        Travel<br><span class="accent">Kathegalu</span>
+      </h1>
+      <p class="hero-kannada">ಟ್ರಾವೆಲ್ ಕಥೆಗಳು — Stories from the road</p>
+      <p class="hero-tagline">
+        Bengaluru's English + Kannada travel creator — destinations, staycations,
+        food & local gems. Reaching 15K+ engaged followers most brands can't.
+      </p>
+      <div class="hero-cta">
+        <a href="#collab" class="btn btn-gold">Let's Collaborate</a>
+        <a href="https://www.instagram.com/travel_kathegalu/" target="_blank" rel="noopener noreferrer" class="btn btn-glass">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          @travel_kathegalu
+        </a>
+      </div>
+    </div>
+    <div id="globe-container"></div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══ STATS BAR ═══ -->
+  <section class="stats-bar" id="stats">
+    <div class="container">
+      <div class="stats-inner">
+        <div class="stat-item reveal">
+          <div class="stat-value">15.2K</div>
+          <div class="stat-label">Followers</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-1">
+          <div class="stat-value">90K+</div>
+          <div class="stat-label">Monthly Views</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-2">
+          <div class="stat-value">69.9K</div>
+          <div class="stat-label">Accounts Reached</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-3">
+          <div class="stat-value">93.9%</div>
+          <div class="stat-label">Non-Follower Reach</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ AUDIENCE DEMOGRAPHICS ═══ -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <span class="label">Why It Works</span>
+        <h2 class="heading-lg">Engagement That Converts</h2>
+        <div class="divider"></div>
+        <p>Real metrics from the last 30 days</p>
+      </div>
+      <div class="audience-grid">
+        <div class="glass audience-card reveal">
+          <div class="stat-value">2,014</div>
+          <div class="label">Accounts Engaged</div>
+          <div class="audience-detail">3,342 total interactions monthly</div>
+          <div class="audience-bar"><div class="audience-bar-fill" style="--fill: 70%"></div></div>
+        </div>
+        <div class="glass audience-card reveal reveal-delay-1">
+          <div class="stat-value">93.9%</div>
+          <div class="label">Discovery Reach</div>
+          <div class="audience-detail">Sustained 30-day average — non-followers finding content via Explore & Reels</div>
+          <div class="audience-bar"><div class="audience-bar-fill" style="--fill: 94%"></div></div>
+        </div>
+        <div class="glass audience-card reveal reveal-delay-2">
+          <div class="stat-value">90.3%</div>
+          <div class="label">Reels-First</div>
+          <div class="audience-detail">Primary content format driving views & engagement</div>
+          <div class="audience-bar"><div class="audience-bar-fill" style="--fill: 90%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BRAND LOGOS ═══ -->
+  <section class="brands-section">
+    <div class="container">
+      <div class="brands-label">
+        <span class="label">Trusted By</span>
+      </div>
+      <div class="brands-grid reveal">
+        <div class="brand-logo">Uber</div>
+        <div class="brand-logo">Wonderla</div>
+        <div class="brand-logo">Himalaya</div>
+        <div class="brand-logo">Aira, Mysuru</div>
+        <div class="brand-logo">Ravishing</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTENT PILLARS ═══ -->
+  <section id="content">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">What I Create</span>
+        <h2 class="heading-lg">Content That Moves People</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="pillars-grid">
+        <div class="glass pillar-card reveal">
+          <div class="pillar-number">01</div>
+          <div class="pillar-title">Destinations & Local Gems</div>
+          <div class="pillar-desc">Hidden spots, weekend getaways, and off-beat destinations around Karnataka and beyond — the places guidebooks miss.</div>
+        </div>
+        <div class="glass pillar-card reveal reveal-delay-1">
+          <div class="pillar-number">02</div>
+          <div class="pillar-title">Staycations & Cafes</div>
+          <div class="pillar-desc">Curated staycation experiences, resort reviews, and cafe discoveries. Content that drives bookings and footfall.</div>
+        </div>
+        <div class="glass pillar-card reveal reveal-delay-2">
+          <div class="pillar-number">03</div>
+          <div class="pillar-title">Food & Culture</div>
+          <div class="pillar-desc">Local cuisine, street food trails, and cultural experiences — capturing flavours and stories that define each destination.</div>
+        </div>
+        <div class="glass pillar-card reveal reveal-delay-3">
+          <div class="pillar-number">04</div>
+          <div class="pillar-title">Reels & Short-Form</div>
+          <div class="pillar-desc">Cinematic reels with trending audio — travel vlogs, day-in-the-life content, and location features that stop the scroll.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">The Story Behind The Stories</span>
+        <h2 class="heading-lg">Meet Devika Ram</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text body-text reveal">
+          <p>
+            With 15K+ followers and 136 posts covering destinations, staycations, food,
+            and local gems across Karnataka and India, Travel Kathegalu has built a loyal community
+            of travel-obsessed millennials and Gen Z audiences based in Bengaluru and beyond.
+          </p>
+          <p>
+            As a bilingual creator producing content in English and Kannada, I reach audiences
+            that most travel creators can't. Brands like Uber, Himalaya, and Aira Mysuru
+            have trusted me to tell their stories authentically — through reels, posts,
+            and destination features that drive real engagement.
+          </p>
+        </div>
+        <div class="about-highlights reveal reveal-delay-1">
+          <div class="glass highlight-card">
+            <span class="highlight-icon">📍</span>
+            <div class="highlight-title">Based in Bengaluru</div>
+            <div class="highlight-desc">Exploring Karnataka & India</div>
+          </div>
+          <div class="glass highlight-card">
+            <span class="highlight-icon">📸</span>
+            <div class="highlight-title">Visual First</div>
+            <div class="highlight-desc">Photography-driven content</div>
+          </div>
+          <div class="glass highlight-card">
+            <span class="highlight-icon">🗣️</span>
+            <div class="highlight-title">Bilingual</div>
+            <div class="highlight-desc">English & Kannada</div>
+          </div>
+          <div class="glass highlight-card">
+            <span class="highlight-icon">💰</span>
+            <div class="highlight-title">Budget Focus</div>
+            <div class="highlight-desc">Real tips, real savings</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COLLABORATION ═══ -->
+  <section id="collab">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">Work With Me</span>
+        <h2 class="heading-lg">Collaboration Opportunities</h2>
+        <div class="divider"></div>
+        <p>For brands, tourism boards & hospitality partners</p>
+      </div>
+      <div class="collab-grid">
+        <div class="glass collab-card reveal">
+          <div class="collab-badge badge-popular">Most Popular</div>
+          <div class="collab-title">Sponsored Posts & Reels</div>
+          <div class="collab-desc">1 Reel + 2–3 Stories featuring your brand. Delivered within 5 days. Usage rights for your channels included. DM for rates.</div>
+        </div>
+        <div class="glass collab-card reveal reveal-delay-1">
+          <div class="collab-badge badge-premium">Premium</div>
+          <div class="collab-title">Destination Campaigns</div>
+          <div class="collab-desc">2–3 day visit. Deliverables: 2 Reels + carousel post + Stories coverage + destination guide. 10-day turnaround. DM for rates.</div>
+        </div>
+        <div class="glass collab-card reveal reveal-delay-2">
+          <div class="collab-badge badge-flex">Flexible</div>
+          <div class="collab-title">Brand Ambassadorship</div>
+          <div class="collab-desc">3–6 month partnership. Monthly content (2 Reels + Stories). Exclusive category lock available. DM for rates.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FEATURED REELS ═══ -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <span class="label">See The Work</span>
+        <h2 class="heading-lg">Featured Content</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="pillars-grid reveal">
+        <a href="https://www.instagram.com/reel/DGqF2U4T642/" target="_blank" rel="noopener noreferrer" class="glass pillar-card" style="text-align:center; padding: 2rem; text-decoration:none; color:inherit;">
+          <div class="stat-value" style="font-size:2rem;">1,408</div>
+          <div class="pillar-title" style="margin-top:0.5rem;">Sula Vineyards</div>
+          <div class="pillar-desc">468 likes · 760 shares · 167 saves · 130 new follows. Destination guide reel — 92.9% non-follower reach.</div>
+        </a>
+        <a href="https://www.instagram.com/p/DZzrNOottbo/" target="_blank" rel="noopener noreferrer" class="glass pillar-card" style="text-align:center; padding: 2rem; text-decoration:none; color:inherit;">
+          <div class="stat-value" style="font-size:2rem;">5,122</div>
+          <div class="pillar-title" style="margin-top:0.5rem;">Uber Auto #AD</div>
+          <div class="pillar-desc">73 likes · 11 shares · 21 new follows in 1 day. Branded weekend reel — organic storytelling with clear CTA.</div>
+        </a>
+        <div class="glass pillar-card" style="text-align:center; padding: 2rem;">
+          <div class="stat-value" style="font-size:2rem;">17.4K</div>
+          <div class="pillar-title" style="margin-top:0.5rem;">Wonderla Reel</div>
+          <div class="pillar-desc">Top-performing organic content — cinematic theme park reel that hit Explore and drove massive discovery.</div>
+        </div>
+        <div class="glass pillar-card" style="text-align:center; padding: 2rem;">
+          <div class="stat-value" style="font-size:2rem;">11.2K</div>
+          <div class="pillar-title" style="margin-top:0.5rem;">Uber Reel (Boosted)</div>
+          <div class="pillar-desc">Paid amplification campaign — 6,947 organic views + boosted reach. 15 profile visits, ₹177 spend.</div>
+        </div>
+      </div>
+
+      <!-- ═══ CASE STUDY ═══ -->
+      <div style="margin-top: 3rem;">
+        <div class="glass" style="padding: 2.5rem; border-left: 3px solid var(--gold);">
+          <span class="label" style="margin-bottom: 1rem; display: block;">Case Study</span>
+          <div class="heading-lg" style="font-size: 1.5rem; margin-bottom: 1rem;">Sula Vineyards — Destination Guide Reel</div>
+          <div class="body-text" style="margin-bottom: 1.5rem;">
+            A single reel covering Sula Vineyards near Bengaluru — with pricing, timings, and experience details — generated <strong style="color:var(--gold);">760 shares</strong>, <strong style="color:var(--gold);">167 saves</strong>, and <strong style="color:var(--gold);">130 new followers</strong>. 92.9% of viewers were non-followers discovering the content through Explore and Reels. The post drove 1,102 unique accounts to engage and became the most-saved piece of content on the profile.
+          </div>
+          <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+            <div><div class="stat-value" style="font-size:1.5rem;">760</div><div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Shares</div></div>
+            <div><div class="stat-value" style="font-size:1.5rem;">167</div><div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Saves</div></div>
+            <div><div class="stat-value" style="font-size:1.5rem;">130</div><div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">New Follows</div></div>
+            <div><div class="stat-value" style="font-size:1.5rem;">92.9%</div><div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Discovery</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section class="contact-section">
+    <div class="container">
+      <span class="label">Let's Talk</span>
+      <h2 class="heading-lg contact-heading">Have a Campaign in Mind?</h2>
+      <div class="divider"></div>
+      <p class="contact-text">
+        Whether it's a destination campaign, product feature, or long-term partnership —
+        I'd love to hear your idea.
+      </p>
+      <div class="contact-actions">
+        <a href="https://www.instagram.com/travel_kathegalu/" target="_blank" rel="noopener noreferrer" class="btn btn-gold">DM on Instagram</a>
+        <a href="mailto:devikaram1620@gmail.com" class="btn btn-glass">Email Me</a>
+      </div>
+      <div class="contact-links">
+        <a href="https://www.instagram.com/travel_kathegalu/" target="_blank" rel="noopener noreferrer" class="contact-link">Instagram</a>
+        <a href="https://www.youtube.com/@travel_kathegalu_16" target="_blank" rel="noopener noreferrer" class="contact-link">YouTube</a>
+        <a href="https://www.threads.net/@travel_kathegalu" target="_blank" rel="noopener noreferrer" class="contact-link">Threads</a>
+        <a href="mailto:devikaram1620@gmail.com" class="contact-link">Email</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    &copy; 2026 Travel Kathegalu — Devika Ram
+  </footer>
+
+  <!-- ═══ THREE.JS ═══ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    // ── 3D Globe ──
+    (function() {
+      const container = document.getElementById('globe-container');
+      if (!container || typeof THREE === 'undefined') return;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+      camera.position.z = 3.5;
+
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      // Globe wireframe
+      const globeGeo = new THREE.SphereGeometry(1, 40, 40);
+      const globeMat = new THREE.MeshBasicMaterial({
+        color: 0xC4944A,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.12
+      });
+      const globe = new THREE.Mesh(globeGeo, globeMat);
+      scene.add(globe);
+
+      // Inner glow sphere
+      const glowGeo = new THREE.SphereGeometry(0.98, 32, 32);
+      const glowMat = new THREE.MeshBasicMaterial({
+        color: 0x0A0F1A,
+        transparent: true,
+        opacity: 0.6
+      });
+      const glowSphere = new THREE.Mesh(glowGeo, glowMat);
+      scene.add(glowSphere);
+
+      // Dot grid on surface
+      const dotGroup = new THREE.Group();
+      const dotGeo = new THREE.SphereGeometry(0.008, 6, 6);
+      const dotMat = new THREE.MeshBasicMaterial({ color: 0xE8D5B7, transparent: true, opacity: 0.5 });
+
+      for (let i = 0; i < 300; i++) {
+        const phi = Math.acos(-1 + (2 * i) / 300);
+        const theta = Math.sqrt(300 * Math.PI) * phi;
+        const dot = new THREE.Mesh(dotGeo, dotMat);
+        dot.position.setFromSphericalCoords(1.01, phi, theta);
+        dotGroup.add(dot);
+      }
+      scene.add(dotGroup);
+
+      // Route arcs (golden curves)
+      const routes = [
+        { from: [0.8, 0.4, 0.5], to: [-0.3, 0.7, 0.7] },
+        { from: [0.5, -0.2, 0.85], to: [-0.8, 0.3, 0.5] },
+        { from: [0.3, 0.9, 0.3], to: [0.7, -0.5, 0.5] },
+        { from: [-0.5, 0.5, 0.7], to: [0.9, 0.1, 0.4] },
+        { from: [0.6, 0.6, 0.5], to: [-0.4, -0.3, 0.85] },
+      ];
+
+      routes.forEach(route => {
+        const start = new THREE.Vector3(...route.from).normalize();
+        const end = new THREE.Vector3(...route.to).normalize();
+        const mid = new THREE.Vector3().addVectors(start, end).multiplyScalar(0.5).normalize().multiplyScalar(1.4);
+
+        const curve = new THREE.QuadraticBezierCurve3(start, mid, end);
+        const points = curve.getPoints(50);
+        const arcGeo = new THREE.BufferGeometry().setFromPoints(points);
+        const arcMat = new THREE.LineBasicMaterial({
+          color: 0xC4944A,
+          transparent: true,
+          opacity: 0.4
+        });
+        const arc = new THREE.Line(arcGeo, arcMat);
+        scene.add(arc);
+
+        // Endpoint markers
+        [start, end].forEach(pos => {
+          const markerGeo = new THREE.SphereGeometry(0.02, 8, 8);
+          const markerMat = new THREE.MeshBasicMaterial({ color: 0xB5838D });
+          const marker = new THREE.Mesh(markerGeo, markerMat);
+          marker.position.copy(pos);
+          scene.add(marker);
+        });
+      });
+
+      // Floating particles
+      const particlesGeo = new THREE.BufferGeometry();
+      const particleCount = 150;
+      const positions = new Float32Array(particleCount * 3);
+
+      for (let i = 0; i < particleCount; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 6;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 6;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 6;
+      }
+
+      particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      const particlesMat = new THREE.PointsMaterial({
+        color: 0xC4944A,
+        size: 0.015,
+        transparent: true,
+        opacity: 0.4
+      });
+      const particles = new THREE.Points(particlesGeo, particlesMat);
+      scene.add(particles);
+
+      // Mouse interaction
+      let mouseX = 0, mouseY = 0;
+      document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
+        mouseY = (e.clientY / window.innerHeight - 0.5) * 0.5;
+      });
+
+      // Animation
+      let scrollSpeed = 0;
+      window.addEventListener('scroll', () => { scrollSpeed = 0.02; });
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        globe.rotation.y += 0.003 + scrollSpeed;
+        dotGroup.rotation.y += 0.003 + scrollSpeed;
+        scrollSpeed *= 0.95;
+
+        globe.rotation.x += (mouseY * 0.3 - globe.rotation.x) * 0.02;
+        globe.rotation.y += (mouseX * 0.5 - globe.rotation.y) * 0.01;
+        dotGroup.rotation.x = globe.rotation.x;
+
+        particles.rotation.y += 0.0005;
+        particles.rotation.x += 0.0002;
+
+        renderer.render(scene, camera);
+      }
+
+      animate();
+
+      // Resize
+      window.addEventListener('resize', () => {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      });
+    })();
+
+    // ── Scroll Reveal ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+
+          // Animate audience bars
+          entry.target.querySelectorAll('.audience-bar-fill').forEach(bar => {
+            bar.classList.add('animated');
+          });
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── Sticky Nav ──
+    const stickyNav = document.getElementById('sticky-nav');
+    if (stickyNav) {
+      let lastScroll = 0;
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        if (y > window.innerHeight * 0.8) {
+          stickyNav.classList.add('visible');
+        } else {
+          stickyNav.classList.remove('visible');
+        }
+        lastScroll = y;
+      });
+    }
+  </script>
+</body>
+</html>
