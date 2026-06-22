@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel Kathegalu | Devika Ram — Travel Creator & Storyteller</title>
   <meta name="description" content="Travel Kathegalu — Bengaluru's bilingual travel creator. 15K+ followers, 90K monthly views. Destinations, staycations, food & local gems in English & Kannada. By Devika Ram.">
+  <meta property="og:title" content="Travel Kathegalu | Devika Ram — Travel Creator">
+  <meta property="og:description" content="Bengaluru's bilingual travel creator. 15K+ followers, 90K monthly views. Destinations, staycations, food & local gems.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -185,6 +189,7 @@
     .hero-text {
       z-index: 2;
       padding-left: clamp(1rem, 5vw, 4rem);
+      max-width: 560px;
     }
 
     .hero-text .label {
@@ -234,10 +239,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .hero-text {
-      max-width: 560px;
     }
 
     .scroll-hint {
@@ -313,6 +314,8 @@
       transform: translateY(-3px);
     }
 
+    .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
     .btn-icon {
       width: 18px;
       height: 18px;
@@ -322,7 +325,7 @@
        STATS BAR
     ═══════════════════════════════════════════ */
     .stats-bar {
-      padding: 3rem 2rem;
+      padding: 5rem 2rem;
       z-index: 2;
     }
 
@@ -344,7 +347,7 @@
     }
 
     .stat-item:hover {
-      background: rgba(196, 148, 74, 0.05);
+      background: rgba(196, 148, 74, 0.1);
     }
 
     .stat-value {
@@ -420,7 +423,7 @@
        BRAND LOGOS
     ═══════════════════════════════════════════ */
     .brands-section {
-      padding: 4rem 2rem;
+      padding: 5rem 2rem;
     }
 
     .brands-label {
@@ -772,10 +775,58 @@
       .container { padding: 0 1rem; }
 
       .stats-inner { grid-template-columns: repeat(2, 1fr); }
-      .audience-grid { grid-template-columns: 1fr; }
+      .audience-grid { grid-template-columns: repeat(2, 1fr); }
       .pillars-grid { grid-template-columns: 1fr; }
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .collab-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── About Portrait ── */
+    .hero-avatar {
+      width: 220px;
+      height: auto;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 30px rgba(196, 148, 74, 0.2));
+    }
+
+    .about-portrait {
+      width: 100%;
+      max-width: 280px;
+      border-radius: 20px;
+      border: 2px solid var(--border-glass);
+      object-fit: cover;
+      aspect-ratio: 3/4;
+      margin: 0 auto 2rem;
+      display: block;
+    }
+
+    /* ── Photo Gallery ── */
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 3rem;
+    }
+
+    .photo-gallery img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      object-position: center 20%;
+      border-radius: 8px;
+      transition: transform 0.4s ease, filter 0.4s ease;
+      filter: brightness(0.85);
+    }
+
+    .photo-gallery img:hover {
+      transform: scale(1.05);
+      filter: brightness(1);
+    }
+
+    @media (max-width: 480px) {
+      .audience-grid { grid-template-columns: 1fr; }
+      .photo-gallery { grid-template-columns: 1fr; }
+      .photo-gallery img { height: 300px; }
     }
 
     /* ── Sticky Nav ── */
@@ -850,7 +901,7 @@
 
   <!-- ═══ STICKY NAV ═══ -->
   <nav class="sticky-nav" id="sticky-nav">
-    <a href="#" class="sticky-nav-brand">Travel Kathegalu</a>
+    <a href="#top" class="sticky-nav-brand" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Travel Kathegalu</a>
     <div class="sticky-nav-links">
       <a href="#stats">Stats</a>
       <a href="#content">Content</a>
@@ -869,6 +920,7 @@
   <!-- ═══ HERO ═══ -->
   <section class="hero">
     <div class="hero-text">
+      <img src="images/dp-illustration.png" alt="Travel Kathegalu — Devika Ram illustrated avatar" class="hero-avatar">
       <span class="label">Digital Creator · Bengaluru</span>
       <h1 class="heading-xl">
         Travel<br><span class="accent">Kathegalu</span>
@@ -934,10 +986,10 @@
           <div class="audience-bar"><div class="audience-bar-fill" style="--fill: 70%"></div></div>
         </div>
         <div class="glass audience-card reveal reveal-delay-1">
-          <div class="stat-value">93.9%</div>
-          <div class="label">Discovery Reach</div>
-          <div class="audience-detail">Sustained 30-day average — non-followers finding content via Explore & Reels</div>
-          <div class="audience-bar"><div class="audience-bar-fill" style="--fill: 94%"></div></div>
+          <div class="stat-value">13.2%</div>
+          <div class="label">Engagement Rate</div>
+          <div class="audience-detail">2,014 accounts engaged from 15,240 followers</div>
+          <div class="audience-bar"><div class="audience-bar-fill" style="--fill: 13%"></div></div>
         </div>
         <div class="glass audience-card reveal reveal-delay-2">
           <div class="stat-value">90.3%</div>
@@ -977,7 +1029,7 @@
         <div class="glass pillar-card reveal">
           <div class="pillar-number">01</div>
           <div class="pillar-title">Destinations & Local Gems</div>
-          <div class="pillar-desc">Hidden spots, weekend getaways, and off-beat destinations around Karnataka and beyond — the places guidebooks miss.</div>
+          <div class="pillar-desc">Hidden spots, weekend getaways, and off-beat destinations around Karnataka and beyond — the spots your friends haven't found yet.</div>
         </div>
         <div class="glass pillar-card reveal reveal-delay-1">
           <div class="pillar-number">02</div>
@@ -987,12 +1039,12 @@
         <div class="glass pillar-card reveal reveal-delay-2">
           <div class="pillar-number">03</div>
           <div class="pillar-title">Food & Culture</div>
-          <div class="pillar-desc">Local cuisine, street food trails, and cultural experiences — capturing flavours and stories that define each destination.</div>
+          <div class="pillar-desc">Local cuisine, street food trails, and cultural experiences — street food trails, local restaurants, and the food scenes worth travelling for.</div>
         </div>
         <div class="glass pillar-card reveal reveal-delay-3">
           <div class="pillar-number">04</div>
-          <div class="pillar-title">Reels & Short-Form</div>
-          <div class="pillar-desc">Cinematic reels with trending audio — travel vlogs, day-in-the-life content, and location features that stop the scroll.</div>
+          <div class="pillar-title">Reels & Travel Vlogs</div>
+          <div class="pillar-desc">Cinematic reels, trending audio, day-in-the-life travel content. The kind of videos people send to their group chat.</div>
         </div>
       </div>
     </div>
@@ -1008,6 +1060,7 @@
       </div>
       <div class="about-grid">
         <div class="about-text body-text reveal">
+          <img src="images/devika-mountains.jpg" alt="Devika Ram — Travel Kathegalu creator" class="about-portrait">
           <p>
             With 15K+ followers and 136 posts covering destinations, staycations, food,
             and local gems across Karnataka and India, Travel Kathegalu has built a loyal community
@@ -1042,6 +1095,17 @@
             <div class="highlight-desc">Real tips, real savings</div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PHOTO GALLERY ═══ -->
+  <section style="padding: 3rem 2rem;">
+    <div class="container">
+      <div class="photo-gallery reveal">
+        <img src="images/devika-temple.jpg" alt="Devika at Virupaksha Temple, Hampi" loading="lazy" style="object-position: center 55%;">
+        <img src="images/devika-lake.jpg" alt="Devika overlooking mountain lake" loading="lazy" style="object-position: center 35%;">
+        <img src="images/devika-saree.jpg" alt="Devika in traditional wear" loading="lazy" style="object-position: center 25%;">
       </div>
     </div>
   </section>
@@ -1084,26 +1148,26 @@
         <div class="divider"></div>
       </div>
       <div class="pillars-grid reveal">
+        <div class="glass pillar-card" style="text-align:center; padding: 2rem;">
+          <div class="stat-value" style="font-size:2rem;">132K</div>
+          <div class="pillar-title" style="margin-top:0.5rem;">Corner House</div>
+          <div class="pillar-desc">Local food reel — Bengaluru's iconic ice cream spot. High shares and saves from the city's food-loving audience.</div>
+        </div>
         <a href="https://www.instagram.com/reel/DGqF2U4T642/" target="_blank" rel="noopener noreferrer" class="glass pillar-card" style="text-align:center; padding: 2rem; text-decoration:none; color:inherit;">
-          <div class="stat-value" style="font-size:2rem;">1,408</div>
+          <div class="stat-value" style="font-size:2rem;">41.5K</div>
           <div class="pillar-title" style="margin-top:0.5rem;">Sula Vineyards</div>
           <div class="pillar-desc">468 likes · 760 shares · 167 saves · 130 new follows. Destination guide reel — 92.9% non-follower reach.</div>
         </a>
-        <a href="https://www.instagram.com/p/DZzrNOottbo/" target="_blank" rel="noopener noreferrer" class="glass pillar-card" style="text-align:center; padding: 2rem; text-decoration:none; color:inherit;">
-          <div class="stat-value" style="font-size:2rem;">5,122</div>
-          <div class="pillar-title" style="margin-top:0.5rem;">Uber Auto #AD</div>
-          <div class="pillar-desc">73 likes · 11 shares · 21 new follows in 1 day. Branded weekend reel — organic storytelling with clear CTA.</div>
-        </a>
         <div class="glass pillar-card" style="text-align:center; padding: 2rem;">
           <div class="stat-value" style="font-size:2rem;">17.4K</div>
-          <div class="pillar-title" style="margin-top:0.5rem;">Wonderla Reel</div>
-          <div class="pillar-desc">Top-performing organic content — cinematic theme park reel that hit Explore and drove massive discovery.</div>
+          <div class="pillar-title" style="margin-top:0.5rem;">Wonderla</div>
+          <div class="pillar-desc">Cinematic theme park reel — hit Explore page. High organic reach driving profile visits and new follows.</div>
         </div>
-        <div class="glass pillar-card" style="text-align:center; padding: 2rem;">
-          <div class="stat-value" style="font-size:2rem;">11.2K</div>
-          <div class="pillar-title" style="margin-top:0.5rem;">Uber Reel (Boosted)</div>
-          <div class="pillar-desc">Paid amplification campaign — 6,947 organic views + boosted reach. 15 profile visits, ₹177 spend.</div>
-        </div>
+        <a href="https://www.instagram.com/p/DZzrNOottbo/" target="_blank" rel="noopener noreferrer" class="glass pillar-card" style="text-align:center; padding: 2rem; text-decoration:none; color:inherit;">
+          <div class="stat-value" style="font-size:2rem;">5,122</div>
+          <div class="pillar-title" style="margin-top:0.5rem;">Uber Auto</div>
+          <div class="pillar-desc">73 likes · 11 shares · 21 new follows in 1 day. Branded weekend reel with organic storytelling.</div>
+        </a>
       </div>
 
       <!-- ═══ CASE STUDY ═══ -->
@@ -1112,7 +1176,7 @@
           <span class="label" style="margin-bottom: 1rem; display: block;">Case Study</span>
           <div class="heading-lg" style="font-size: 1.5rem; margin-bottom: 1rem;">Sula Vineyards — Destination Guide Reel</div>
           <div class="body-text" style="margin-bottom: 1.5rem;">
-            A single reel covering Sula Vineyards near Bengaluru — with pricing, timings, and experience details — generated <strong style="color:var(--gold);">760 shares</strong>, <strong style="color:var(--gold);">167 saves</strong>, and <strong style="color:var(--gold);">130 new followers</strong>. 92.9% of viewers were non-followers discovering the content through Explore and Reels. The post drove 1,102 unique accounts to engage and became the most-saved piece of content on the profile.
+            A single reel covering Sula Vineyards in Channapatna, Karnataka — with pricing, timings, and experience details — hit <strong style="color:var(--gold);">41.5K views</strong>, <strong style="color:var(--gold);">760 shares</strong>, <strong style="color:var(--gold);">167 saves</strong>, and <strong style="color:var(--gold);">130 new followers</strong>. 92.9% of viewers were non-followers discovering the content through Explore and Reels. The post reached 34,366 unique accounts and became the most-shared piece of content on the profile.
           </div>
           <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
             <div><div class="stat-value" style="font-size:1.5rem;">760</div><div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Shares</div></div>
