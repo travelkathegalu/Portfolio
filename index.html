@@ -828,6 +828,7 @@
       .audience-grid { grid-template-columns: 1fr; }
       .photo-gallery { grid-template-columns: 1fr; }
       .photo-gallery img { height: 300px; }
+      .hero-text .label { font-size: 0.7rem; letter-spacing: 1.5px; white-space: nowrap; }
     }
 
     /* ── Sticky Nav ── */
@@ -1232,7 +1233,7 @@
       const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
       // On mobile the globe sits in a short box; pull the camera closer so the
       // sphere fills it instead of floating with empty space above/below.
-      const cameraZ = () => window.innerWidth <= 968 ? 2.5 : 3.5;
+      const cameraZ = () => window.innerWidth <= 968 ? 3.1 : 3.5;
       camera.position.z = cameraZ();
 
       const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
