@@ -245,6 +245,37 @@
       flex-wrap: wrap;
     }
 
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-glass);
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .hero-stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
     #globe-container {
       position: relative;
       z-index: 1;
@@ -253,38 +284,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .scroll-hint span {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-      animation: scroll-pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes scroll-pulse {
-      0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
-      50% { opacity: 1; transform: scaleY(1); }
     }
 
     /* ── Buttons ── */
@@ -446,30 +445,29 @@
     }
 
     .brands-marquee {
-      overflow: hidden;
+      overflow-x: auto;
+      overflow-y: hidden;
       opacity: 0.75;
       transition: opacity 0.3s;
       -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
       mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+      cursor: grab;
+      touch-action: pan-x;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
 
+    .brands-marquee::-webkit-scrollbar { display: none; }
+
     .brands-marquee:hover { opacity: 1; }
+
+    .brands-marquee.is-dragging { cursor: grabbing; }
 
     .brands-track {
       display: inline-flex;
       align-items: center;
       gap: 3.5rem;
       width: max-content;
-      animation: brands-scroll 50s linear infinite;
-    }
-
-    .brands-marquee:hover .brands-track {
-      animation-play-state: paused;
-    }
-
-    @keyframes brands-scroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
     }
 
     .brand-logo {
@@ -687,36 +685,6 @@
     .collab-card:hover {
       transform: translateY(-6px);
       background: rgba(255, 255, 255, 0.07);
-    }
-
-    .collab-badge {
-      display: inline-block;
-      padding: 0.35rem 1rem;
-      border-radius: 50px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 1.25rem;
-    }
-
-    .badge-popular {
-      background: rgba(196, 148, 74, 0.15);
-      color: var(--gold);
-      border: 1px solid rgba(196, 148, 74, 0.25);
-    }
-
-    .badge-premium {
-      background: rgba(181, 131, 141, 0.15);
-      color: var(--rose);
-      border: 1px solid rgba(181, 131, 141, 0.25);
-    }
-
-    .badge-flex {
-      background: rgba(91, 138, 138, 0.15);
-      color: var(--teal);
-      border: 1px solid rgba(91, 138, 138, 0.25);
     }
 
     .collab-title {
@@ -998,9 +966,9 @@
       .stats-inner { grid-template-columns: repeat(2, 1fr); }
       .hero-cta { flex-direction: column; align-items: center; }
       .btn { width: 100%; max-width: 280px; justify-content: center; margin: 0 auto; }
+      .hero-stats { justify-content: center; text-align: center; gap: 1.5rem; }
       .about-highlights { grid-template-columns: 1fr; }
       .contact-actions { flex-direction: column; align-items: center; }
-      .scroll-hint { display: none; }
     }
   </style>
 </head>
@@ -1044,12 +1012,13 @@
           @travel_kathegalu
         </a>
       </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="hero-stat-value">15.2K</span><span class="hero-stat-label">Followers</span></div>
+        <div class="hero-stat"><span class="hero-stat-value">100K+</span><span class="hero-stat-label">Monthly Views</span></div>
+        <div class="hero-stat"><span class="hero-stat-value">79.2K</span><span class="hero-stat-label">Reached</span></div>
+      </div>
     </div>
     <div id="globe-container"></div>
-    <div class="scroll-hint">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
   </section>
 
   <!-- ═══ STATS BAR ═══ -->
@@ -1253,17 +1222,14 @@
       </div>
       <div class="collab-grid">
         <div class="glass collab-card reveal">
-          <div class="collab-badge badge-popular">Most Popular</div>
           <div class="collab-title">Sponsored Posts & Reels</div>
           <div class="collab-desc">1 Reel + 2–3 Stories featuring your brand. Delivered within 5 days. Usage rights for your channels included. DM for rates.</div>
         </div>
         <div class="glass collab-card reveal reveal-delay-1">
-          <div class="collab-badge badge-premium">Premium</div>
           <div class="collab-title">Destination Campaigns</div>
           <div class="collab-desc">2–3 day visit. Deliverables: 2 Reels + carousel post + Stories coverage + destination guide. 10-day turnaround. DM for rates.</div>
         </div>
         <div class="glass collab-card reveal reveal-delay-2">
-          <div class="collab-badge badge-flex">Flexible</div>
           <div class="collab-title">Brand Ambassadorship</div>
           <div class="collab-desc">3–6 month partnership. Monthly content (2 Reels + Stories). Exclusive category lock available. DM for rates.</div>
         </div>
@@ -1575,6 +1541,70 @@
           if (glare) glare.style.opacity = '0';
           el.addEventListener('transitionend', () => { el.style.willChange = ''; }, { once: true });
         });
+      });
+    })();
+  </script>
+
+  <script>
+    // ── Brands marquee: ambient auto-scroll + native drag/touch override ──
+    (function () {
+      const marquee = document.querySelector('.brands-marquee');
+      const track = document.querySelector('.brands-track');
+      if (!marquee || !track) return;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      let paused = false;
+      let dragging = false;
+      let startX = 0;
+      let startScroll = 0;
+
+      function loopWidth() {
+        return track.scrollWidth / 2; // list is duplicated once
+      }
+
+      function tick() {
+        if (!paused && !dragging) {
+          marquee.scrollLeft += 0.6;
+          const half = loopWidth();
+          if (marquee.scrollLeft >= half) marquee.scrollLeft -= half;
+        }
+        requestAnimationFrame(tick);
+      }
+      if (!reduceMotion) requestAnimationFrame(tick);
+
+      marquee.addEventListener('mouseenter', () => { paused = true; });
+      marquee.addEventListener('mouseleave', () => { paused = false; dragging = false; marquee.classList.remove('is-dragging'); });
+
+      // mouse drag-to-scroll (touch already scrolls natively via overflow-x + touch-action)
+      marquee.addEventListener('pointerdown', (e) => {
+        if (e.pointerType !== 'mouse') return;
+        dragging = true;
+        paused = true;
+        startX = e.clientX;
+        startScroll = marquee.scrollLeft;
+        marquee.classList.add('is-dragging');
+      });
+
+      window.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        const half = loopWidth();
+        let next = startScroll - (e.clientX - startX);
+        next = ((next % half) + half) % half; // wrap both directions
+        marquee.scrollLeft = next;
+      });
+
+      window.addEventListener('pointerup', () => {
+        if (!dragging) return;
+        dragging = false;
+        marquee.classList.remove('is-dragging');
+      });
+
+      // native touch/trackpad scroll can also drift past the loop point — wrap it too
+      marquee.addEventListener('scroll', () => {
+        if (dragging) return;
+        const half = loopWidth();
+        if (marquee.scrollLeft >= half) marquee.scrollLeft -= half;
+        else if (marquee.scrollLeft < 0) marquee.scrollLeft += half;
       });
     })();
   </script>
