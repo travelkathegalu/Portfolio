@@ -89,6 +89,20 @@
       background: rgba(20, 25, 40, 0.7);
       border: 1px solid var(--border-glass);
       border-radius: 20px;
+      transform-style: preserve-3d;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+    }
+
+    /* tilt glare overlay, injected by JS — only matters on fine pointers */
+    .tilt-glare {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.18), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
     }
 
     @supports (backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px)) {
@@ -431,17 +445,32 @@
       margin-bottom: 2.5rem;
     }
 
-    .brands-grid {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 3rem;
-      flex-wrap: wrap;
-      opacity: 0.6;
+    .brands-marquee {
+      overflow: hidden;
+      opacity: 0.75;
       transition: opacity 0.3s;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     }
 
-    .brands-grid:hover { opacity: 0.85; }
+    .brands-marquee:hover { opacity: 1; }
+
+    .brands-track {
+      display: inline-flex;
+      align-items: center;
+      gap: 3.5rem;
+      width: max-content;
+      animation: brands-scroll 50s linear infinite;
+    }
+
+    .brands-marquee:hover .brands-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes brands-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
 
     .brand-logo {
       font-family: 'Space Grotesk', sans-serif;
@@ -449,9 +478,77 @@
       font-weight: 600;
       color: var(--text-secondary);
       letter-spacing: 1px;
-      padding: 1rem 1.5rem;
+      padding: 1.25rem 1.75rem;
       border: 1px dashed var(--border-glass);
       border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 150px;
+      box-sizing: border-box;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .brand-logo img {
+      height: 56px;
+      width: auto;
+      display: block;
+    }
+
+    .brand-logo.brand-logo-chip {
+      border-style: solid;
+      background: var(--ivory);
+      padding: 1rem 1.75rem;
+    }
+
+    .brand-logo.brand-logo-chip img {
+      height: 56px;
+    }
+
+    .brand-logo img[src*="wonderla"] { height: 76px; }
+    .brand-logo img[src*="cornerhouse"] { height: 72px; }
+    .brand-logo img[src*="sula-wordmark"] { height: 100px; }
+    .brand-logo img[src*="rameshwaram-footer"] { height: 72px; }
+    .brand-logo img[src*="goldenleaf"] { height: 84px; }
+    .brand-logo img[src*="jewelsizzle"] { height: 52px; }
+    .brand-logo img[src*="rosae"] { height: 48px; }
+    .brand-logo img[src*="founders"] { height: 60px; }
+    .brand-logo img[src*="candlesbrewhouse"] { height: 60px; }
+
+    .brand-logo-labeled {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .brand-logo-caption {
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .brand-logo-chip .brand-logo-caption {
+      color: var(--bg-deep, #0A0F1A);
+      opacity: 0.7;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .brands-marquee {
+        overflow: visible;
+        mask-image: none;
+        -webkit-mask-image: none;
+      }
+      .brands-track {
+        animation: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: auto;
+      }
+      .brands-track .brand-logo:nth-child(n+14) { display: none; }
     }
 
     /* ═══════════════════════════════════════════
@@ -552,9 +649,11 @@
     }
 
     .highlight-icon {
-      font-size: 2rem;
-      margin-bottom: 0.75rem;
+      width: 2rem;
+      height: 2rem;
+      margin: 0 auto 0.75rem;
       display: block;
+      color: var(--gold);
     }
 
     .highlight-title {
@@ -817,11 +916,16 @@
       border-radius: 8px;
       transition: transform 0.4s ease, filter 0.4s ease;
       filter: brightness(0.85);
+      transform-style: preserve-3d;
     }
 
     .photo-gallery img:hover {
-      transform: scale(1.05);
       filter: brightness(1);
+    }
+
+    /* on touch/coarse pointers JS skips the tilt, so keep the simple hover scale */
+    @media (pointer: coarse) {
+      .photo-gallery img:hover { transform: scale(1.05); }
     }
 
     @media (max-width: 480px) {
@@ -896,6 +1000,7 @@
       .btn { width: 100%; max-width: 280px; justify-content: center; margin: 0 auto; }
       .about-highlights { grid-template-columns: 1fr; }
       .contact-actions { flex-direction: column; align-items: center; }
+      .scroll-hint { display: none; }
     }
   </style>
 </head>
@@ -1009,12 +1114,35 @@
       <div class="brands-label">
         <span class="label">Trusted By</span>
       </div>
-      <div class="brands-grid reveal">
-        <div class="brand-logo">Uber</div>
-        <div class="brand-logo">Wonderla</div>
-        <div class="brand-logo">Himalaya</div>
-        <div class="brand-logo">Aira, Mysuru</div>
-        <div class="brand-logo">Ravishing</div>
+      <div class="brands-marquee reveal">
+        <div class="brands-track">
+          <div class="brand-logo"><img src="images/logos/uber.svg" alt="Uber" loading="lazy"></div>
+          <div class="brand-logo brand-logo-chip"><img src="images/logos/wonderla.png" alt="Wonderla" loading="lazy"></div>
+          <div class="brand-logo"><img src="images/logos/himalaya.svg" alt="Himalaya" loading="lazy"></div>
+          <div class="brand-logo"><img src="images/logos/decathlon.svg" alt="Decathlon" loading="lazy"></div>
+          <div class="brand-logo brand-logo-chip"><img src="images/logos/ravishing.png" alt="Ravishing Retreat" loading="lazy"></div>
+          <div class="brand-logo brand-logo-chip"><img src="images/logos/sula-wordmark.png" alt="Sula Vineyards" loading="lazy"></div>
+          <div class="brand-logo"><img src="images/logos/cornerhouse.png" alt="Corner House Icecream" loading="lazy"></div>
+          <div class="brand-logo"><img src="images/logos/rameshwaram-footer.svg" alt="The Rameshwaram Cafe" loading="lazy"></div>
+          <div class="brand-logo brand-logo-labeled"><img src="images/logos/rosae.png" alt="Rosae Theaters" loading="lazy"><span class="brand-logo-caption">Rosae Theaters</span></div>
+          <div class="brand-logo"><img src="images/logos/goldenleaf.png" alt="Goldenleaf Sakleshpur Resort" loading="lazy"></div>
+          <div class="brand-logo brand-logo-chip brand-logo-labeled"><img src="images/logos/jewelsizzle.png" alt="Jewel Sizzle" loading="lazy"><span class="brand-logo-caption">Jewel Sizzle</span></div>
+          <div class="brand-logo brand-logo-labeled"><img src="images/logos/founders.jpg" alt="The Founders Brewery" loading="lazy"><span class="brand-logo-caption">The Founders Brewery</span></div>
+          <div class="brand-logo brand-logo-labeled"><img src="images/logos/candlesbrewhouse.jpg" alt="Candles Brew House" loading="lazy"><span class="brand-logo-caption">Candles Brew House</span></div>
+          <div class="brand-logo"><img src="images/logos/uber.svg" alt="" loading="lazy" aria-hidden="true"></div>
+          <div class="brand-logo brand-logo-chip"><img src="images/logos/wonderla.png" alt="" loading="lazy" aria-hidden="true"></div>
+          <div class="brand-logo"><img src="images/logos/himalaya.svg" alt="" loading="lazy" aria-hidden="true"></div>
+          <div class="brand-logo"><img src="images/logos/decathlon.svg" alt="" loading="lazy" aria-hidden="true"></div>
+          <div class="brand-logo brand-logo-chip"><img src="images/logos/ravishing.png" alt="" loading="lazy" aria-hidden="true"></div>
+          <div class="brand-logo brand-logo-chip"><img src="images/logos/sula-wordmark.png" alt="" loading="lazy" aria-hidden="true"></div>
+          <div class="brand-logo"><img src="images/logos/cornerhouse.png" alt="" loading="lazy" aria-hidden="true"></div>
+          <div class="brand-logo"><img src="images/logos/rameshwaram-footer.svg" alt="" loading="lazy" aria-hidden="true"></div>
+          <div class="brand-logo brand-logo-labeled" aria-hidden="true"><img src="images/logos/rosae.png" alt="" loading="lazy"><span class="brand-logo-caption">Rosae Theaters</span></div>
+          <div class="brand-logo" aria-hidden="true"><img src="images/logos/goldenleaf.png" alt="" loading="lazy"></div>
+          <div class="brand-logo brand-logo-chip brand-logo-labeled" aria-hidden="true"><img src="images/logos/jewelsizzle.png" alt="" loading="lazy"><span class="brand-logo-caption">Jewel Sizzle</span></div>
+          <div class="brand-logo brand-logo-labeled" aria-hidden="true"><img src="images/logos/founders.jpg" alt="" loading="lazy"><span class="brand-logo-caption">The Founders Brewery</span></div>
+          <div class="brand-logo brand-logo-labeled" aria-hidden="true"><img src="images/logos/candlesbrewhouse.jpg" alt="" loading="lazy"><span class="brand-logo-caption">Candles Brew House</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1077,22 +1205,22 @@
         </div>
         <div class="about-highlights reveal reveal-delay-1">
           <div class="glass highlight-card">
-            <span class="highlight-icon">📍</span>
+            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
             <div class="highlight-title">Based in Bengaluru</div>
             <div class="highlight-desc">Exploring Karnataka & India</div>
           </div>
           <div class="glass highlight-card">
-            <span class="highlight-icon">📸</span>
+            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5h3.2L8 6h8l1.8 2.5H21a1 1 0 0 1 1 1V18a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V9.5a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg>
             <div class="highlight-title">Visual First</div>
             <div class="highlight-desc">Photography-driven content</div>
           </div>
           <div class="glass highlight-card">
-            <span class="highlight-icon">🗣️</span>
+            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-2.6 6.1A8.5 8.5 0 0 1 12 20a8.4 8.4 0 0 1-4-1L3 20l1.1-4.6A8.4 8.4 0 0 1 3.5 11.5 8.5 8.5 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z"/><path d="M8.5 10.5h7M8.5 13.5h4.5"/></svg>
             <div class="highlight-title">Bilingual</div>
             <div class="highlight-desc">English & Kannada</div>
           </div>
           <div class="glass highlight-card">
-            <span class="highlight-icon">💰</span>
+            <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5h15a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2h12"/><circle cx="16.5" cy="13" r="1.5"/></svg>
             <div class="highlight-title">Budget Focus</div>
             <div class="highlight-desc">Real tips, real savings</div>
           </div>
@@ -1401,6 +1529,54 @@
         lastScroll = y;
       });
     }
+  </script>
+
+  <script>
+    // ── Cheap CSS 3D tilt for cards/photos (no WebGL, no deps) ──
+    // ponytail: skip on touch + reduced-motion, no rAF loop — just pointermove math
+    (function () {
+      const finePointer = window.matchMedia('(pointer: fine)').matches;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!finePointer || reduceMotion) return;
+
+      const targets = document.querySelectorAll('.glass, .photo-gallery img');
+      const MAX_DEG = 8;
+
+      targets.forEach((el) => {
+        let glare = null;
+        if (el.classList.contains('glass')) {
+          glare = document.createElement('div');
+          glare.className = 'tilt-glare';
+          el.appendChild(glare);
+        }
+
+        el.addEventListener('pointermove', (e) => {
+          const rect = el.getBoundingClientRect();
+          const px = (e.clientX - rect.left) / rect.width;  // 0..1
+          const py = (e.clientY - rect.top) / rect.height;  // 0..1
+          const rotateY = (px - 0.5) * MAX_DEG * 2;
+          const rotateX = (0.5 - py) * MAX_DEG * 2;
+
+          el.style.willChange = 'transform';
+          el.style.transition = 'transform 0.05s linear, box-shadow 0.4s ease';
+          el.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+          el.style.boxShadow = `${-rotateY * 1.5}px ${rotateX * 1.5}px 30px rgba(0,0,0,0.35)`;
+
+          if (glare) {
+            glare.style.opacity = '1';
+            glare.style.background = `radial-gradient(circle at ${px * 100}% ${py * 100}%, rgba(255,255,255,0.18), transparent 60%)`;
+          }
+        });
+
+        el.addEventListener('pointerleave', () => {
+          el.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease';
+          el.style.transform = '';
+          el.style.boxShadow = '';
+          if (glare) glare.style.opacity = '0';
+          el.addEventListener('transitionend', () => { el.style.willChange = ''; }, { once: true });
+        });
+      });
+    })();
   </script>
 </body>
 </html>
